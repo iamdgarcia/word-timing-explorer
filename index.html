@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Word Timing Explorer — whisper word-level timestamps, in-browser</title>
+<meta name="description" content="Run Whisper in your browser and see word-level timestamps: the signal realtime voice agents use for barge-in decisions.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>⏱️ Word Timing Explorer</h1>
+  <p class="sub">Whisper word-level timestamps, 100% in your browser — the signal voice agents use for <strong>barge-in</strong> decisions.</p>
+  <p class="links"><a href="https://iamdgarcia-word-timing-explorer.static.hf.space">▶ Try it live</a> · <a href="https://github.com/iamdgarcia/word-timing-explorer">Code on GitHub</a> · <a href="https://huggingface.co/iamdgarcia">iamdgarcia</a></p>
+</header>
+
+<main>
+  <section id="setup">
+    <div class="controls">
+      <label>Language
+        <select id="lang">
+          <option value="auto">Auto-detect</option>
+          <option value="english">English</option>
+          <option value="spanish">Spanish</option>
+        </select>
+      </label>
+      <button id="btn-load" class="primary">Load model</button>
+      <span id="device-badge" class="badge" title="Execution backend">—</span>
+    </div>
+    <div id="progress-wrap" hidden>
+      <div id="progress-bar"><div id="progress-fill"></div></div>
+      <div id="progress-text">Preparing…</div>
+      <p class="hint">First run downloads ~50–100&nbsp;MB of model weights. Cached by your browser afterwards.</p>
+    </div>
+  </section>
+
+  <section id="input" hidden>
+    <div class="controls">
+      <button id="btn-record">🎤 Record</button>
+      <label class="file-btn">📂 Upload audio
+        <input type="file" id="file" accept="audio/*" hidden>
+      </label>
+      <button id="btn-transcribe" class="primary" disabled>Transcribe</button>
+      <span id="audio-name" class="badge">no audio yet</span>
+    </div>
+    <audio id="player" controls hidden></audio>
+    <p class="hint">Tip: short clips (5–30 s) transcribe fastest. Recording stops on second click; say a sentence with a clear pause in the middle to see pause markers.</p>
+  </section>
+
+  <section id="status" hidden><span id="status-text"></span></section>
+
+  <section id="result" hidden>
+    <div class="result-head">
+      <h2>Word timeline</h2>
+      <button id="btn-export" title="Copy JSON to clipboard">⧉ Copy JSON</button>
+    </div>
+    <div id="chips"></div>
+    <p class="hint">Click a word to seek the audio there · words highlight during playback · ⋯ = pause &gt; 500 ms (gap to previous word)</p>
+  </section>
+
+  <section id="education">
+    <h2>Why word timing matters for voice agents</h2>
+    <ul>
+      <li><strong>Barge-in detection:</strong> when the agent is speaking and the user starts mid-sentence, word-level onset times tell the agent <em>where</em> the user cut in and what to do with the tail of its own utterance (keep, rewind, or drop).</li>
+      <li><strong>Subtitle alignment:</strong> word timestamps are exactly what caption/overlay systems need to light up each word as it is spoken — no forced alignment post-pass required.</li>
+      <li><strong>Latency measurement:</strong> comparing the last word's end time against response onset measures end-of-turn → answer latency, the number voice-agent teams obsess over.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  Built by <a href="https://huggingface.co/iamdgarcia">iamdgarcia</a> — realtime voice agent engineer.
+  Related: <a href="https://iamdgarcia-voice-agents-playground.static.hf.space">Voice Agents Playground</a> (live VAD endpointing).
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

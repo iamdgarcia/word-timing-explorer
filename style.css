@@ -1,0 +1,104 @@
+:root {
+  --bg: #0d1017;
+  --panel: #151a23;
+  --border: #262d3a;
+  --text: #e8ecf3;
+  --dim: #8b95a7;
+  --accent: #a78bfa;
+  --accent2: #f472b6;
+  --ok: #34d399;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+header { max-width: 880px; margin: 0 auto; padding: 2rem 1rem 0.5rem; text-align: center; }
+h1 { margin: 0 0 0.3rem; font-size: 1.6rem; }
+h2 { font-size: 1.1rem; margin: 0 0 0.6rem; }
+.sub { color: var(--dim); margin: 0.2rem 0 0.6rem; }
+.links a { color: var(--accent); text-decoration: none; margin: 0 0.35rem; }
+.links a:hover { text-decoration: underline; }
+
+main { max-width: 880px; margin: 0 auto; padding: 1rem; }
+section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.controls { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+label { color: var(--dim); font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem; }
+select {
+  background: var(--bg); color: var(--text);
+  border: 1px solid var(--border); border-radius: 8px; padding: 0.4rem;
+}
+button {
+  background: #1d2532; color: var(--text);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 0.5rem 0.9rem; cursor: pointer; font-size: 0.95rem;
+}
+button:hover:not(:disabled) { border-color: var(--accent); }
+button:disabled { opacity: 0.5; cursor: wait; }
+button.primary { background: var(--accent); color: #14101f; border-color: var(--accent); font-weight: 600; }
+button.rec { background: var(--accent2); border-color: var(--accent2); color: #1f0f18; }
+.file-btn {
+  background: #1d2532; border: 1px solid var(--border); border-radius: 8px;
+  padding: 0.5rem 0.9rem; cursor: pointer; color: var(--text); font-size: 0.95rem;
+}
+.file-btn:hover { border-color: var(--accent); }
+
+.badge {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 999px;
+  padding: 0.25rem 0.7rem; font-size: 0.8rem; color: var(--dim);
+}
+.badge.ok { color: var(--ok); border-color: var(--ok); }
+
+#progress-bar {
+  height: 10px; background: var(--bg); border-radius: 999px;
+  overflow: hidden; margin-top: 0.6rem;
+}
+#progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width 0.2s; }
+#progress-text { color: var(--dim); font-size: 0.85rem; margin-top: 0.3rem; }
+
+.hint { color: var(--dim); font-size: 0.85rem; margin: 0.6rem 0 0; }
+
+audio { width: 100%; margin-top: 0.8rem; }
+
+#chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chip {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+  padding: 0.3rem 0.6rem; font-size: 0.95rem; cursor: pointer;
+}
+.chip:hover { border-color: var(--accent); }
+.chip.active {
+  background: var(--accent); color: #14101f; border-color: var(--accent); font-weight: 600;
+}
+.chip.pause {
+  cursor: default; color: var(--accent2); border-style: dashed; font-size: 0.85rem;
+}
+.chip.pause:hover { border-color: var(--border); }
+
+.result-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+
+#education ul { margin: 0.3rem 0 0; padding-left: 1.2rem; }
+#education li { margin-bottom: 0.5rem; }
+
+footer { text-align: center; color: var(--dim); font-size: 0.85rem; padding: 1rem 0 2rem; }
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+#status-text { color: var(--accent2); }
+
+@media (max-width: 600px) {
+  header { padding-top: 1.2rem; }
+  .controls { flex-direction: column; align-items: stretch; }
+  button, .file-btn, select { width: 100%; }
+}

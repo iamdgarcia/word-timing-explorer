@@ -49,3 +49,5 @@ Word-level timestamps are the signal behind three things realtime voice-agent te
 
 Built by [iamdgarcia](https://huggingface.co/iamdgarcia) — realtime voice agent engineer
 ([iamdgarcia.com](https://iamdgarcia.com)). Apache-2.0.
+
+📖 Full writeup: [https://iamdgarcia.medium.com/watching-your-voice-agent-think-three-instruments-you-can-open-in-a-browser-tab-f7ed16ec2a2a](https://iamdgarcia.medium.com/watching-your-voice-agent-think-three-instruments-you-can-open-in-a-browser-tab-f7ed16ec2a2a) — *Watching your voice agent think* (D. García Peña).

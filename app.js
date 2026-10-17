@@ -118,10 +118,12 @@ $('btn-transcribe').addEventListener('click', async () => {
   $('status-text').textContent = 'Transcribing… (runs locally, may take a few seconds)';
   const t0 = performance.now();
   try {
-    const audio = await (await fetch(blobUrl)).arrayBuffer();
+    // pass the blob URL: transformers.js fetches + decodes (any container: wav/webm/mp4)
+    // and resamples to 16kHz mono itself. Raw ArrayBuffer here caused
+    // "e.subarray is not a function" (bytes treated as samples).
     const options = { return_timestamps: 'word', chunk_length_s: 30, stride_length_s: 5 };
     if (lang !== 'auto') options.language = lang;
-    const out = await state.pipe(audio, options);
+    const out = await state.pipe(blobUrl, options);
     const ms = (performance.now() - t0).toFixed(0);
     render(out, ms);
     $('status').hidden = true;
